@@ -5,7 +5,6 @@ var captureContainers;
 var captureIndex;
 
 function init() {
-  // create a new stage and point it at our canvas:
   canvas = document.getElementById("testCanvas");
   stage = new createjs.Stage(canvas);
   canvas.width = window.innerWidth;
@@ -20,7 +19,6 @@ function init() {
   captureContainers = [];
   captureIndex = 0;
 
-  // create a large number of slightly complex vector shapes, and give them random positions and velocities:
 		for (var i = 0; i < 100; i++) {
 			var heart = new createjs.Shape();
 			heart.graphics.beginFill(createjs.Graphics.getHSL(Math.random() * 30 - 45, 100, 50 + Math.random() * 30));
@@ -49,7 +47,6 @@ function init() {
     captureContainers.push(captureContainer);
   }
 
-  // start the tick and point it at the window so we can do some work before updating the stage:
   createjs.Ticker.timingMode = createjs.Ticker.RAF;
   createjs.Ticker.on("tick", tick);
 }
@@ -65,7 +62,6 @@ function tick(event) {
   stage.addChildAt(captureContainer, 0);
   captureContainer.addChild(container);
 
-  // iterate through all the children and move them according to their velocity:
 		for (var i = 0; i < l; i++) {
 			var heart = container.getChildAt(i);
 			if (heart.y < -50) {
@@ -88,7 +84,6 @@ function tick(event) {
 
   captureContainer.updateCache("source-over");
 
-  // draw the updates to stage:
   stage.update(event);
 }
 
